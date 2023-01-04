@@ -46,52 +46,44 @@ new test cases fast and consistent
 ```text
 .
 ├── README.md
-├── cucumber-html-report.js
 ├── cypress
-│ ├── config
-│ │ └── prod.config.js
-│ ├── cucumber-json
-│ ├── e2e
-│ │ ├── login.page.feature
-│ │ ├── product.search.page.feature
-│ │ └── step_definitions
-│ │     ├── common.cy.js
-│ │     ├── login.page.cy.js
-│ │     ├── product.details.page.cy.js
-│ │     └── product.search.page.cy.js
-│ ├── fixtures
-│ │ └── example.json
-│ ├── plugins
-│ │ └── index.js
-│ └── support
-│     ├── commands.js
-│     ├── constants.js
-│     ├── e2e.js
-│     ├── helper.js
-│     ├── localization
-│     │ ├── english.json
-│     │ └── german.json
-│     ├── localization.js
-│     ├── logger.js
-│     ├── maps
-│     │ ├── page.map.js
-│     │ └── search.parameter.map.js
-│     ├── objects
-│     │ ├── locator.js
-│     │ ├── searchparameter.js
-│     │ └── wildcard.js
-│     ├── pages
-│     │ ├── Page.js
-│     │ ├── main.page.js
-│     │ ├── main.page.js
-│     │ ├── product.details.page.js
-│     │ └── product.search.page.js
-│     └── scope.js
+│   ├── config
+│   │   └── prod.config.js
+│   ├── downloads
+│   ├── e2e
+│   │   └── main.page.feature
+│   ├── fixtures
+│   │   └── example.json
+│   ├── plugins
+│   │   └── index.js
+│   ├── screenshots
+│   └── support
+│       ├── commands.js
+│       ├── constants.js
+│       ├── e2e.js
+│       ├── helper.js
+│       ├── localization
+│       │   ├── english.json
+│       │   └── german.json
+│       ├── localization.js
+│       ├── logger.js
+│       ├── maps
+│       │   └── page.map.js
+│       ├── objects
+│       │   ├── locator.js
+│       │   ├── searchparameter.js
+│       │   └── wildcard.js
+│       ├── pages
+│       │   ├── Page.js
+│       │   ├── common.selectors.js
+│       │   └── main.page.js
+│       ├── scope.js
+│       └── step_definitions
+│           └── common.cy.js
 ├── cypress.config.js
-├── package.json
-└── tagium.js
-
-
+├── multi-reporter-config.json
+├── package-lock.json
+└── package.json
 ```
 
 package.json
@@ -116,14 +108,12 @@ inside the cypress folder, 4 base folders can be found
 
 run in headles mode
 ```bash
-npm cy:silent-dev
-npm cy:silent-qa
+npm cy:silent-prod
 ```
 
 run in cypress browser mode
 ````bash
-npm run cy:editor-dev
-npm run cy:editor-qa
+npm run cy:editor-prod
 ````
 
 __more commands will follow__
