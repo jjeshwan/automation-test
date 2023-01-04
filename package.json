@@ -1,0 +1,44 @@
+{
+  "name": "automation-test",
+  "version": "1.0.0",
+  "description": "e2e basis automation project",
+  "main": "index.js",
+  "scripts": {
+    "cy:silent-prod-spec": "npx cypress run --browser chrome --env allure=true --config-file cypress/config/prod.config.js --spec",
+    "cy:silent-prod-tags": "npx cypress run --browser chrome --env allure=true --config-file cypress/config/prod.config.js --env",
+    "cy:silent-prod-full": "npx cypress run --browser chrome --env allure=true --config-file cypress/config/prod.config.js",
+    "cy:editor-prod": "npx cypress open --env allure=true --config-file cypress/config/prod.config.js",
+
+    "allure:history-copy": "cp -R ./allure-report/history ./allure-results",
+    "allure:report": "allure generate allure-results --clean -o allure-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.github.de/Gardosen/automation-test.git"
+  },
+  "author": "Marco Bierbach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://git.github.de/Gardosen/automation-test/issues"
+  },
+  "homepage": "https://git.github.de/Gardosen/automation-test#readme",
+  "dependencies": {
+    "navigator": "1.0.1",
+    "start-server-and-test": "1.14.0"
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "14.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "2.1.5",
+    "@shelex/cypress-allure-plugin": "2.34.0",
+    "allure-commandline": "2.20.1",
+    "cypress": "11.2.0",
+    "cypress-ag-grid": "2.0.1",
+    "cypress-parallel": "0.9.1",
+    "cypress-real-events": "1.7.4",
+    "@cypress/xpath": "2.0.3",
+    "esbuild": "0.15.16",
+    "fs-extra": "11.0.0",
+    "typescript": "4.9.3",
+    "playwright-webkit": "1.28.1"
+  }
+}
