@@ -38,7 +38,6 @@
     "@cypress/xpath": "2.0.3",
     "esbuild": "0.15.16",
     "fs-extra": "11.0.0",
-    "typescript": "4.9.3",
     "playwright-webkit": "1.28.1"
   }
 }
