@@ -96,11 +96,12 @@ inside the cypress folder, 4 base folders can be found
 - fixture
   - folder for any mock related content
 - e2e
-  - folder for the feature files containing the Gherkin based scenarios and the step definition spec files in a sub folder called step_definitions
+  - folder for the feature files containing the Gherkin based scenarios
 - plugins
   - index.js file preparing the plugins and several function overwrites
 - support
   - classes containing help functions to generalize and ease up the handling of cypress across the project
+  - the step definition spec files in a sub folder called step_definitions
 
 ### How to Use the automation
 
