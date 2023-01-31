@@ -29,6 +29,7 @@
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "14.0.0",
     "@bahmutov/cypress-esbuild-preprocessor": "2.1.5",
+    "@cypress/browserify-preprocessor": "^3.0.2",
     "@shelex/cypress-allure-plugin": "2.34.0",
     "allure-commandline": "2.20.1",
     "cypress": "11.2.0",

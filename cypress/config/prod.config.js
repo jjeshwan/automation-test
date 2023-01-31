@@ -1,5 +1,6 @@
 const { defineConfig } = require("cypress");
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify");
 const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 const addCucumberPreprocessorPlugin =
@@ -17,10 +18,6 @@ module.exports = defineConfig({
 
   e2e: {
     async setupNodeEvents(on, config) {
-      const bundler = createBundler({
-        plugins: [createEsbuildPlugin(config)],
-      });
-
       on('before:browser:launch', (browser = {}, launchOptions) => {
         // `args` is an array of all the arguments that will
         // be passed to browsers when it launches
@@ -32,8 +29,8 @@ module.exports = defineConfig({
         return launchOptions;
       });
 
-      on("file:preprocessor", bundler);
       await addCucumberPreprocessorPlugin(on, config);
+      on("file:preprocessor", browserify.default(config));
       allureWriter(on, config);
 
       return config;
