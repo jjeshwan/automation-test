@@ -24,20 +24,19 @@
   "homepage": "https://git.github.de/Gardosen/automation-test#readme",
   "dependencies": {
     "navigator": "1.0.1",
-    "start-server-and-test": "1.14.0"
+    "start-server-and-test": "1.15.5"
   },
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "14.0.0",
-    "@bahmutov/cypress-esbuild-preprocessor": "2.1.5",
-    "@shelex/cypress-allure-plugin": "2.34.0",
-    "allure-commandline": "2.20.1",
-    "cypress": "11.2.0",
-    "cypress-ag-grid": "2.0.1",
-    "cypress-parallel": "0.9.1",
-    "cypress-real-events": "1.7.4",
+    "@badeball/cypress-cucumber-preprocessor": "17.1.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "2.2.0",
+    "@cypress/browserify-preprocessor": "3.0.2",
+    "@shelex/cypress-allure-plugin": "2.40.0",
+    "cypress": "12.17.4",
+    "cypress-ag-grid": "2.0.2",
+    "cypress-parallel": "0.13.0",
+    "cypress-real-events": "1.10.1",
     "@cypress/xpath": "2.0.3",
-    "esbuild": "0.15.16",
-    "fs-extra": "11.0.0",
-    "playwright-webkit": "1.28.1"
+    "esbuild": "0.19.2",
+    "fs-extra": "11.1.1"
   }
 }
