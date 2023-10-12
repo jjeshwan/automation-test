@@ -1,26 +1,14 @@
 const { defineConfig } = require("cypress");
-const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
-const allureWriter = require('@shelex/cypress-allure-plugin/writer');
-
 const addCucumberPreprocessorPlugin =
     require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
-const createEsbuildPlugin =
-    require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
+const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify");
+require('dotenv').config({path:'../../.env'});
 
 module.exports = defineConfig({
-  env: {
-    frontendUrl: "https://www.google.com/?&hl=en",
-    envName: "-",
-    cyLogEnabled: true,
-    consoleLogEnabled: true
-  },
-
+  viewportWidth: 1920,
+  viewportHeight: 1080,
   e2e: {
     async setupNodeEvents(on, config) {
-      const bundler = createBundler({
-        plugins: [createEsbuildPlugin(config)],
-      });
-
       on('before:browser:launch', (browser = {}, launchOptions) => {
         // `args` is an array of all the arguments that will
         // be passed to browsers when it launches
@@ -28,20 +16,27 @@ module.exports = defineConfig({
         if (browser.family === 'chromium' && browser.name !== 'electron') {
           console.log('Adding Chrome flag: --disable-dev-shm-usage');
           launchOptions.args.push('--disable-dev-shm-usage');
+          launchOptions.args.push('--disable-gpu');
         }
         return launchOptions;
       });
 
-      on("file:preprocessor", bundler);
       await addCucumberPreprocessorPlugin(on, config);
-      allureWriter(on, config);
-
+      on("file:preprocessor", browserify.default(config));
       return config;
     },
-    specPattern: "cypress/e2e/*.feature"
+    specPattern: [
+      "cypress/e2e/**/*.feature"
+    ],
+
   },
-  defaultCommandTimeout: 5000,
-  experimentalWebKitSupport: true,
+  defaultCommandTimeout: 25000,
+  animationDistanceThreshold: 1,
+  waitForAnimations: true,
+  videosFolder: 'cypress/videos',
+  screenshotsFolder: 'cypress/screenshots',
+  downloadsFolder: 'cypress/downloads',
+  numTestsKeptInMemory: 1,
   video: false,
   retries: {
     // Configure retry attempts for `cypress run`
