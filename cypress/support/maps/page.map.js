@@ -8,27 +8,25 @@
 import {WILD_CARDS} from '../constants.js';
 import WildCard from '../objects/wildcard.js';
 
-const MainPage = require("../pages/main.page")
+const GooglePage = require("../pages/google.page")
 
 cy.pageMap = {};
 
 const PAGEMAP = {
-    'main page': MainPage
+    'google page': GooglePage
 }
 
 cy.pageMap.getPageUrl = (pageDescription) => {
     if(PAGEMAP[pageDescription] === undefined)
         cy.logger.log("Error",`no url mapping found for page description [${pageDescription}]`);
 
-    return Cypress.env('frontendUrl').concat(
-            cy.helper.replaceWildCard(
+    return cy.helper.replaceWildCard(
                 PAGEMAP[pageDescription].path,
                 new WildCard(
                     WILD_CARDS.LANG_CODE,
                     cy.localization.getLangCode()
                 )
-            )
-    );
+            );
 }
 
 cy.pageMap.getPageRegExp = (pageDescription) => {
