@@ -5,6 +5,7 @@ import './scope.js'
 import './logger.js'
 import '@cypress/xpath';
 import 'cypress-real-events';
+import 'cypress-mochawesome-reporter/register';
 
 
 Cypress.on("uncaught:exception", _ => {

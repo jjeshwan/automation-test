@@ -19,7 +19,7 @@ npm install
 
 run in headles mode
 ```bash
-npm cy:silent-prod
+npm run cy:silent-prod
 ```
 
 run in cypress browser mode

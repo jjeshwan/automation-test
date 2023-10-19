@@ -7,6 +7,14 @@ require('dotenv').config({path:'../../.env'});
 module.exports = defineConfig({
   viewportWidth: 1920,
   viewportHeight: 1080,
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    charts: true,
+    reportPageTitle: 'custom-title',
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
+  },
   e2e: {
     async setupNodeEvents(on, config) {
       on('before:browser:launch', (browser = {}, launchOptions) => {
@@ -23,6 +31,7 @@ module.exports = defineConfig({
 
       await addCucumberPreprocessorPlugin(on, config);
       on("file:preprocessor", browserify.default(config));
+      require('cypress-mochawesome-reporter/plugin')(on);
       return config;
     },
     specPattern: [
