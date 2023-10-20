@@ -16,6 +16,10 @@ When(/^I click the "(.* button|.* input field|.* mask)"$/, function(selectorIden
     cy.helper.clickElement(selectorIdentifier);
 });
 
+When(/^I select "(.*)" from the "(.* dropdown)"$/, function(value, selectorIdentifier) {
+    cy.helper.selectElement(value, selectorIdentifier);
+});
+
 When(/^I hover the element "(.*)"$/, function(selectorIdentifier) {
    cy.helper.hoverElement(selectorIdentifier);
 });
@@ -47,4 +51,8 @@ Then(/^I see that the url matches the "(.*)" url$/, function(pageDescription) {
     cy.url().should('match', cy.pageMap.getPageRegExp(pageDescription));
     cy.scope.currentPage = pageDescription;
     cy.scope.currentPageObject = cy.pageMap.getPage(pageDescription);
+});
+
+Then(/^I see that the "(.*)" sorted according to the selected "(.*)"$/, function(itemsElement, value) {
+    cy.helper.checkSorting(itemsElement, value);
 });

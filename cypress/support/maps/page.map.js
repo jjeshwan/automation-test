@@ -9,13 +9,15 @@ import {WILD_CARDS} from '../constants.js';
 import WildCard from '../objects/wildcard.js';
 
 const GooglePage = require("../pages/google.page");
-const DuckduckgoPage = require("../pages/duckduckgo.page")
+const DuckduckgoPage = require("../pages/duckduckgo.page");
+const SaucedemoPage = require("../pages/saucedemo.page");
 
 cy.pageMap = {};
 
 const PAGEMAP = {
     'google page': GooglePage,
-    'duckduckgo page': DuckduckgoPage
+    'duckduckgo page': DuckduckgoPage,
+    'saucedemo page': SaucedemoPage
 }
 
 cy.pageMap.getPageUrl = (pageDescription) => {

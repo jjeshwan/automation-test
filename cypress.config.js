@@ -47,6 +47,7 @@ module.exports = defineConfig({
   downloadsFolder: 'cypress/downloads',
   numTestsKeptInMemory: 1,
   video: false,
+  chromeWebSecurity: false,
   retries: {
     // Configure retry attempts for `cypress run`
     // Default is 0

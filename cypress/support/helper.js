@@ -19,6 +19,40 @@ cy.helper.clickElement = (selectorIdentifier) => {
     cy.helper.getElement(selectorIdentifier).click();
 }
 
+cy.helper.selectElement = (value, selectorIdentifier) => {
+    cy.helper.getElement(selectorIdentifier).select(value);
+}
+
+cy.helper.checkSorting = (itemsElement, value) => {
+    switch(value) {
+        case 'az':
+            cy.helper.getElement(itemsElement).then($item => {
+                const strings = [...$item].map(it => it.innerText);
+                expect(strings).to.deep.equal([...strings].sort());
+            });
+            break;
+        case 'za':
+            cy.helper.getElement(itemsElement).then($item => {
+                const strings = [...$item].map(it => it.innerText);
+                expect(strings).to.deep.equal([...strings].sort().reverse());
+            });
+            break;
+        case 'lohi':
+            cy.helper.getElement(itemsElement).then($item => {
+                const strings = [...$item].map(it => it.innerText.replace(/\$/g, ''));
+                expect(strings).to.deep.equal([...strings].sort((a, b) => a - b));
+            });
+            break;
+        case 'hilo':
+        default:
+            cy.helper.getElement(itemsElement).then($item => {
+                const strings = [...$item].map(it => it.innerText.replace(/\$/g, ''));
+                expect(strings).to.deep.equal([...strings].sort((a, b) => b - a));
+            });
+            break;
+    }
+}
+
 cy.helper.clickElementWithWildCards = (selectorIdentifier, wildCards ) => {
     cy.helper.getElementWithWildCards(selectorIdentifier, wildCards).click();
 }
