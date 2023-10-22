@@ -19,6 +19,18 @@ cy.helper.clickElement = (selectorIdentifier) => {
     cy.helper.getElement(selectorIdentifier).click();
 }
 
+cy.helper.clickSpecificElement = (selectorIdentifier, value) => {
+    if (value == "All"){
+        cy.helper.getElement(selectorIdentifier).click({ multiple: true });
+    } 
+    else if (cy.helper.getElement(selectorIdentifier).length >= 1) {
+        cy.helper.getElement(selectorIdentifier).eq(value-1).click();
+    }
+    else{
+        cy.helper.getElement(selectorIdentifier).eq(0).click();
+    }
+}
+
 cy.helper.selectElement = (value, selectorIdentifier) => {
     cy.helper.getElement(selectorIdentifier).select(value);
 }

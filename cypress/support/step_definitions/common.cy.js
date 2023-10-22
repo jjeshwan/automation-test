@@ -12,11 +12,15 @@ Then(/^The "(tab title)" is in "(.*)"$/, function (element, language) {
     cy.title().should('eq', expectedValue );
 });
 
-When(/^I click the "(.* button|.* input field|.* mask)"$/, function(selectorIdentifier) {
+When(/^I click the "(.* button|.* input field|.* mask|.* link)"$/, function(selectorIdentifier) {
     cy.helper.clickElement(selectorIdentifier);
 });
 
-When(/^I select "(.*)" from the "(.* dropdown)"$/, function(value, selectorIdentifier) {
+When(/^I click the "(.* button|.* input field|.* mask)" for the specific "(.*)" item$/, function(selectorIdentifier, value) {
+    cy.helper.clickSpecificElement(selectorIdentifier, value);
+});
+
+When(/^I select a "(.*)" from the "(.* dropdown)"$/, function(value, selectorIdentifier) {
     cy.helper.selectElement(value, selectorIdentifier);
 });
 
@@ -45,6 +49,20 @@ Then(/^I see(?: the| a) "(.*)"( by scrolling)?$/, function (pageElement, scrollT
         cy.helper.getElement(pageElement).scrollIntoView().should('be.visible');
     else
         cy.helper.getElement(pageElement).should('be.visible');
+});
+
+Then(/^I see the "(.*)" according to the "(.*)" item(?: added| removed)$/, function (pageElement, value) {
+    if(value == "All")
+        cy.helper.getElement(pageElement).eq(5).should('be.visible');
+    else
+        cy.helper.getElement(pageElement).eq(0).should('be.visible');
+});
+
+Then(/^I see the "(.*)" to show "(.*)" number of items added to the basket$/, function (pageElement, value) {
+    if(value == "All")
+        cy.helper.getElement(pageElement).contains('6');
+    else
+        cy.helper.getElement(pageElement).contains('1');
 });
 
 Then(/^I see that the url matches the "(.*)" url$/, function(pageDescription) {
